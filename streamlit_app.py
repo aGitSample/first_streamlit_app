@@ -1,6 +1,5 @@
 import streamlit
 import pandas
-import snowflake.connector
 
 streamlit.title("My Mom\'s New Healthy Diner")
 streamlit.header('Breakfast Favorites')
@@ -31,6 +30,7 @@ fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # output to the screen as a table
 streamlit.dataframe(fruityvice_normalized)
 
+import snowflake.connector
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
